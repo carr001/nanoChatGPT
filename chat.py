@@ -10,7 +10,7 @@ from model import GPTConfig, GPT
 import requests
 
 # -----------------------------------------------------------------------------
-init_from = 'resume'
+init_from = 'huggingface'
 out_dir = 'out-chat' # where finetuned model lives
 num_samples = 1 # no samples. 1 for 1 chat at a time
 max_new_tokens = 100
@@ -18,7 +18,7 @@ temperature = 0.8
 top_k = 5 # retain only the top_k most likely tokens, clamp others to have 0 probability
 device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1', etc.
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32' or 'bfloat16' or 'float16'
-compile = True # use PyTorch 2.0 to compile the model to be faster
+compile = False# use PyTorch 2.0 to compile the model to be faster
 context="<human>Hello, how are you?<endOfText><bot>Thanks, Im good, what about you?<endOfText><human>Im great thanks, My names James, and I'm from the UK, wbu?<endOfText><bot>Hi James, I'm Conner, and im from america. <endOftext>" # a little context for better chat responses
 exec(open('configurator.py').read()) # overrides from command line, only for out_dir location, if you store the ckpt.pt elsewhere, like gdrive, to escape finetuning everytime you run the colab
 # -----------------------------------------------------------------------------
